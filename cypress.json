@@ -6,5 +6,6 @@
     "retries": {
         "runMode": 1,
         "openMode": 1
-    }
+    },
+    "projectId": "gwafto"
 }
