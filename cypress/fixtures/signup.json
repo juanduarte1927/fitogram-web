@@ -1,0 +1,13 @@
+{
+  "studioName": "Automatic Studio Name",
+  "kindStudio": "Dance",
+  "location": "France",
+  "aggregator": "OneFit",
+  "firstName": "Juan",
+  "lastName": "Duarte",
+  "password": "Testing123",
+  "studioNameDuplicated": "hola",
+  "wrongEmail": "test@fitogram"
+
+
+}

@@ -3,30 +3,30 @@ import 'cypress-mailslurp';
 
 const signUpPage = new SignUpPage();
 
-Cypress.Commands.add('FillSignUpStudioForm', () => {
-    signUpPage.getStudioName().type('Automatic Studio Name' + Math.floor(Math.random() * 100) + 1);
+Cypress.Commands.add('FillSignUpStudioForm', (studioName, kindStudio, location, aggregator) => {
+    signUpPage.getStudioName().type(studioName + Math.floor(Math.random() * 100) + 1);
        signUpPage.getKindStudio().click({force: true});
-        cy.contains('Dance').click();
+        cy.contains(kindStudio).click();
         signUpPage.getStudioLocation().click();
-        cy.contains('France').click();
+        cy.contains(location).click();
         signUpPage.getAggregatorList().click();
         signUpPage.getContinueBtn().should('be.disabled');
-        cy.contains('OneFit').click();
+        cy.contains(aggregator).click();
         cy.wait(1000)
         signUpPage.getContinueBtn().click({force: true});
 });
 
-Cypress.Commands.add('FillPersonalDetails', function () {
-        signUpPage.getFirtsName().type('Juan');
-        signUpPage.getLastName().type('Duarte');
+Cypress.Commands.add('FillPersonalDetails', function (firstName, lastName, password) {
+        signUpPage.getFirtsName().type(firstName);
+        signUpPage.getLastName().type(lastName);
         cy.getNewEmail();
-        signUpPage.getPassword().type('Asdf123');
+        signUpPage.getPassword().type(password);
         signUpPage.getCreateStudioBtn().should('be.disabled');
         signUpPage.getCheckTerms().click();
         cy.wait(2000)
         signUpPage.getCreateStudioBtn().click({force: true});
         cy.wait(7000)
-        cy.contains('Juan Duarte').should('be.visible');
+        cy.contains(firstName + ' ' + lastName).should('be.visible');
 });
 
 Cypress.Commands.add('getNewEmail', function () {
@@ -38,23 +38,23 @@ Cypress.Commands.add('getNewEmail', function () {
         });
 });
 
-Cypress.Commands.add('FillSignUpStudioFormDuplicated', () => {
-    signUpPage.getStudioName().type('hola');
+Cypress.Commands.add('FillSignUpStudioFormDuplicated', (studioNameDuplicated, kindStudio, location, aggregator) => {
+    signUpPage.getStudioName().type(studioNameDuplicated);
        signUpPage.getKindStudio().click({force: true});
-        cy.contains('Dance').click();
+        cy.contains(kindStudio).click();
         signUpPage.getStudioLocation().click();
-        cy.contains('France').click();
+        cy.contains(location).click();
         signUpPage.getAggregatorList().click();
-        cy.contains('OneFit').click();
+        cy.contains(aggregator).click();
         cy.wait(1000);
         signUpPage.getContinueBtn().should('be.disabled');
 });
 
-Cypress.Commands.add('FillPersonalDetailsWrongEmail', function () {
-    signUpPage.getFirtsName().type('Juan');
-    signUpPage.getLastName().type('Duarte');
-    signUpPage.getEmail().type('wrong@email');
-    signUpPage.getPassword().type('Asdf123');
+Cypress.Commands.add('FillPersonalDetailsWrongEmail', function (firstName, lastName, wrongEmail, password) {
+    signUpPage.getFirtsName().type(firstName);
+    signUpPage.getLastName().type(lastName);
+    signUpPage.getEmail().type(wrongEmail);
+    signUpPage.getPassword().type(password);
     signUpPage.getCheckTerms().click();
     cy.contains('Invalid email address').should('be.visible');
     cy.wait(1000);
