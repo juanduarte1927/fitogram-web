@@ -1,7 +1,7 @@
 {
     "baseUrl": "https://app.fitogram.pro/",
     "env": {
-    "MAILSLURP_API_KEY": "d516143e1884534ff1767d37a619b6f9de06e5725c8495de4e39c941e243fa8c"
+    "MAILSLURP_API_KEY": "d977b9b2f747d3f0e5b8ee1c5d0eeb76f13608fa09e6433ec115baece4607bec"
     },
     "retries": {
         "runMode": 1,
